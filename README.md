@@ -1,0 +1,1 @@
+This is a simple script designed for encrypting a file and concealing it among several other encrypted files. It has been created solely to implement a personal idea. However, it's important to note that this script is not intended to provide strong encryption. Use it at your own risk and be aware that it's primarily a proof of concept, likely containing several bugs.
