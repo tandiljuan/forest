@@ -144,12 +144,19 @@ hide_tree () {
 
     # Encrypt file
     # ------------
+    # @see https://github.com/SixArm/gpg-encrypt
 
-    gpg --quiet \
+    gpg --quiet --no-greeting \
         --no-use-agent \
         --passphrase "${password}" \
         --symmetric \
         --cipher-algo AES256 \
+        --digest-algo SHA256 \
+        --cert-digest-algo SHA512 \
+        --s2k-mode 3 \
+        --s2k-digest-algo SHA512 \
+        --s2k-count 65011712 \
+        --force-mdc \
         --output "${gpg_name}" \
         "${md5_name}"
 
@@ -199,7 +206,7 @@ search_tree () {
     local hidden_tree=''
 
     for check_tree in $(ls -1 "${dir_name}"/); do
-        gpg --quiet \
+        gpg --quiet --no-greeting \
             --no-use-agent \
             --passphrase "${password}" \
             --decrypt \
@@ -315,7 +322,7 @@ handle_find() {
     if [[ "${hidden_tree}" != "" ]]; then
         echo "> Hidden tree: ${hidden_tree}"
 
-        local file_name=$(gpg --quiet \
+        local file_name=$(gpg --quiet --no-greeting \
             --no-use-agent \
             --passphrase "${PASSWORD}" \
             --decrypt \
@@ -326,7 +333,7 @@ handle_find() {
         echo "> Tree content: ${file_name}"
 
         if (( $list_content != 0 )); then
-            gpg --quiet \
+            gpg --quiet --no-greeting \
                 --no-use-agent \
                 --passphrase "${PASSWORD}" \
                 --decrypt \
