@@ -251,7 +251,7 @@ handle_seed () {
     # -----------------------
 
     local now="$(date +'%Y%m%d_%H%M%S_%N')"
-    local dir_name="forest_${now}"
+    local dir_name="${now}"
 
     mkdir -p "${dir_name}"
 
