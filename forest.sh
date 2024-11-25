@@ -93,12 +93,18 @@ random_tree () {
     # -------------------------
 
     if (( $size_diff != 0 )); then
-        local rand_diff=$(( ($RANDOM % 10) + 1 ))
+        local rand_diff=$(( $RANDOM % 50 ))
 
         if (( $(( $RANDOM % 2 )) == 0 )); then
             file_size=$(( $file_size + $rand_diff ))
         else
-            file_size=$(( $file_size - $rand_diff ))
+            while true; do
+                if (( $(( $file_size - $rand_diff )) > 0 )); then
+                    file_size=$(( $file_size - $rand_diff ))
+                    break
+                fi
+                rand_diff=$(( $rand_diff - 1 ))
+            done
         fi
     fi
 
