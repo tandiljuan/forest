@@ -43,12 +43,18 @@ usage () {
 
     $(basename "$0") COMMAND CONTENT_FILE
 
+    Description:
+
+    A small utility to encrypt content and hide it within other encrypted files, creating a 'forest' of data. This allows you to securely store sensitive information in a way that is obfuscated and harder to detect.
+
     Commands:
 
-    help  This help message.
+    help  Display this help message.
     seed  Create the forest to hide the content.
-    find  Find the tree in the forest and display the content.
-    chop  Chop the forest (find the tree) and get the content."
+    find  Search the forest for the hidden content and display it.
+    chop  Chop the forest (find the hidden content) and extract it.
+
+    Note: The CONTENT_FILE should ideally be compressed to achieve better results and stealth."
 }
 
 #######################################
